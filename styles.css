@@ -1,0 +1,25 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    background-color: white;
+    cursor: crosshair;
+}
+
+#toolbar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+#colorPicker {
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
