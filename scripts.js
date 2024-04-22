@@ -11,7 +11,7 @@ canvas.height = window.innerHeight;
 
 // Set background image
 const backgroundImage = new Image();
-backgroundImage.src = 'public/images/Solid_white.png'; // Replace 'path/to/your/image.png' with the actual path to your PNG image
+backgroundImage.src = 'public/images/solidwhite.png'; // Replace 'path/to/your/image.png' with the actual path to your PNG image
 
 // Draw the background image on the canvas
 backgroundImage.onload = function() {
