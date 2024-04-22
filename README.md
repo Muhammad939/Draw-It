@@ -1,4 +1,4 @@
-#Draw it
+<h1>Draw it</h1>
 Draw it is a simple drawing application where users can create drawings with various colors using a color picker tool.
 
 <h2>Features</h2>
