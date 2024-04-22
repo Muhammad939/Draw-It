@@ -38,3 +38,7 @@ canvas {
 #downloadBtn:hover {
     background-color: #45a049;
 }
+
+html {
+    background-image: url(public/images/Solid_white.png);
+}
