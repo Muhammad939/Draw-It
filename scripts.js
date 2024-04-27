@@ -34,10 +34,23 @@ function draw(e) {
     context.lineCap = 'round';
     context.strokeStyle = colorPicker.value;
 
-    context.lineTo(e.clientX, e.clientY);
+    // Check if touchscreen event
+    if (e.touches) {
+        const touch = e.touches[0];
+        context.lineTo(touch.clientX, touch.clientY);
+    } else {
+        context.lineTo(e.clientX, e.clientY);
+    }
+
     context.stroke();
     context.beginPath();
-    context.moveTo(e.clientX, e.clientY);
+    // Check if touchscreen event
+    if (e.touches) {
+        const touch = e.touches[0];
+        context.moveTo(touch.clientX, touch.clientY);
+    } else {
+        context.moveTo(e.clientX, e.clientY);
+    }
 }
 
 function downloadCanvasAsPng() {
@@ -53,5 +66,10 @@ function downloadCanvasAsPng() {
 canvas.addEventListener('mousedown', startPosition);
 canvas.addEventListener('mouseup', endPosition);
 canvas.addEventListener('mousemove', draw);
+
+// Touch events
+canvas.addEventListener('touchstart', startPosition);
+canvas.addEventListener('touchend', endPosition);
+canvas.addEventListener('touchmove', draw);
 
 downloadBtn.addEventListener('click', downloadCanvasAsPng);
