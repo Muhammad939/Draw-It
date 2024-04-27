@@ -2,6 +2,7 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const colorPicker = document.getElementById('colorPicker');
 const downloadBtn = document.getElementById('downloadBtn');
+const clearBtn = document.getElementById('clearBtn'); // New clear button
 
 let painting = false;
 
@@ -63,6 +64,11 @@ function downloadCanvasAsPng() {
     document.body.removeChild(link);
 }
 
+function clearCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // redraw background
+}
+
 canvas.addEventListener('mousedown', startPosition);
 canvas.addEventListener('mouseup', endPosition);
 canvas.addEventListener('mousemove', draw);
@@ -73,3 +79,4 @@ canvas.addEventListener('touchend', endPosition);
 canvas.addEventListener('touchmove', draw);
 
 downloadBtn.addEventListener('click', downloadCanvasAsPng);
+clearBtn.addEventListener('click', clearCanvas); // Add event listener for clear button
