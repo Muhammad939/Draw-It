@@ -4,6 +4,7 @@ const colorPicker = document.getElementById('colorPicker');
 const downloadBtn = document.getElementById('downloadBtn');
 const clearBtn = document.getElementById('clearBtn');
 const sizeButton = document.querySelector('.sizeButton');
+const shareBtn = document.getElementById('shareBtn');
 
 let painting = false;
 
@@ -40,24 +41,15 @@ function draw(e) {
     context.lineCap = 'round';
     context.strokeStyle = colorPicker.value;
 
-    // Check if touchscreen event
-    if (e.touches) {
-        const touch = e.touches[0];
-        context.lineTo(touch.clientX, touch.clientY);
-    } else {
-        context.lineTo(e.clientX, e.clientY);
-    }
+    // Get mouse/touch position
+    const mouseX = e.clientX || e.touches[0].clientX;
+    const mouseY = e.clientY || e.touches[0].clientY;
 
+    // Draw line
+    context.lineTo(mouseX, mouseY);
     context.stroke();
     context.beginPath();
-
-    // Check if touchscreen event
-    if (e.touches) {
-        const touch = e.touches[0];
-        context.moveTo(touch.clientX, touch.clientY);
-    } else {
-        context.moveTo(e.clientX, e.clientY);
-    }
+    context.moveTo(mouseX, mouseY);
 }
 
 function downloadCanvasAsPng() {
@@ -75,6 +67,17 @@ function clearCanvas() {
     context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // redraw background
 }
 
+function shareCanvas() {
+    const dataURL = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.download = 'canvas_image.png';
+    link.href = dataURL;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Event listeners
 canvas.addEventListener('mousedown', startPosition);
 canvas.addEventListener('mouseup', endPosition);
 canvas.addEventListener('mousemove', draw);
@@ -84,5 +87,7 @@ canvas.addEventListener('touchstart', startPosition);
 canvas.addEventListener('touchend', endPosition);
 canvas.addEventListener('touchmove', draw);
 
+// Button click events
 downloadBtn.addEventListener('click', downloadCanvasAsPng);
 clearBtn.addEventListener('click', clearCanvas);
+shareBtn.addEventListener('click', shareCanvas);
