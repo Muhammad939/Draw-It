@@ -57,7 +57,7 @@ function draw(e) {
 function downloadCanvasAsPng() {
     const dataURL = canvas.toDataURL('image/png');
     const link = document.createElement('a');
-    link.download = 'canvas_image.png';
+    link.download = 'masterpiece.png';
     link.href = dataURL;
     document.body.appendChild(link);
     link.click();
