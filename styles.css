@@ -88,3 +88,25 @@ html {
 #shareBtn:hover {
     background-color: #45a049;
 }
+
+.about {
+    font-family: "Mukta", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: blue;
+}
+
+.contact {
+    font-family: "Mukta", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin-left: 4px;
+    color: blue;
+}
+.instruct {
+    font-family: "Mukta", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: blue;
+    margin-left: 4px
+}
