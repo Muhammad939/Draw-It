@@ -2,7 +2,8 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const colorPicker = document.getElementById('colorPicker');
 const downloadBtn = document.getElementById('downloadBtn');
-const clearBtn = document.getElementById('clearBtn'); // New clear button
+const clearBtn = document.getElementById('clearBtn');
+const sizeButton = document.querySelector('.sizeButton');
 
 let painting = false;
 
@@ -12,12 +13,17 @@ canvas.height = window.innerHeight;
 
 // Set background image
 const backgroundImage = new Image();
-backgroundImage.src = 'public/images/solidwhite.png'; // Replace 'path/to/your/image.png' with the actual path to your PNG image
+backgroundImage.src = 'public/images/solidwhite.png';
 
 // Draw the background image on the canvas
 backgroundImage.onload = function() {
     context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 };
+
+// Function to handle brush size change
+sizeButton.addEventListener('change', function() {
+    context.lineWidth = parseInt(this.value);
+});
 
 function startPosition(e) {
     painting = true;
@@ -31,7 +37,6 @@ function endPosition() {
 
 function draw(e) {
     if (!painting) return;
-    context.lineWidth = 5;
     context.lineCap = 'round';
     context.strokeStyle = colorPicker.value;
 
@@ -45,6 +50,7 @@ function draw(e) {
 
     context.stroke();
     context.beginPath();
+
     // Check if touchscreen event
     if (e.touches) {
         const touch = e.touches[0];
@@ -79,4 +85,4 @@ canvas.addEventListener('touchend', endPosition);
 canvas.addEventListener('touchmove', draw);
 
 downloadBtn.addEventListener('click', downloadCanvasAsPng);
-clearBtn.addEventListener('click', clearCanvas); // Add event listener for clear button
+clearBtn.addEventListener('click', clearCanvas);
